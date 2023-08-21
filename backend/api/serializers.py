@@ -2,7 +2,6 @@ from rest_framework import serializers
 from . import models
 from . import parser
 import logging
-from django.db.models import F
 
 log = logging.getLogger(__name__)
 

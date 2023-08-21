@@ -3,6 +3,9 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from . import serializers
 from . import models
+import logging
+
+log = logging.getLogger(__name__)
 
 
 class CreateListViewSet(
