@@ -36,3 +36,19 @@ class DealsViewSet(CreateListViewSet):
         super().create(request, *args, **kwargs)
 
         return Response(status=status.HTTP_200_OK)
+
+    def list(self, request, *args, **kwargs):
+        resp = super().list(request, *args, **kwargs)
+        gems_counter = dict()
+
+        for entry in resp.data:
+            for i in entry["gems"]:
+                gems_counter[i] = gems_counter.get(i, 0) + 1
+
+        for k, v in gems_counter.items():
+            if v < 2:
+                for entry in resp.data:
+                    if k in entry["gems"]:
+                        entry["gems"].remove(k)
+
+        return resp
