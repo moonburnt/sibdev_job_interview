@@ -7,6 +7,7 @@ log = logging.getLogger(__name__)
 
 
 router = DefaultRouter()
+router.register("deals", views.DealsViewSet)
 
 urlpatterns = [
     path("", include(router.urls)),
