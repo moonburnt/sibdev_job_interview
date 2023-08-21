@@ -2,15 +2,14 @@ from django.db import models
 
 class ClientModel(models.Model):
     username = models.CharField(max_length=80, unique=True)
-    # virtual, calculated in serializer
-    # spent_money = models.DecimalField(max_digits=8, decimal_places=2)
+    spent_money = models.DecimalField(
+        default = 0,
+        max_digits=8,
+        decimal_places=2,
+    )
 
 class GemModel(models.Model):
     name = models.CharField(max_length=80, unique=True)
-    # client = models.ManyToManyField(
-    #     to = ClientModel,
-    #     related_name= "gems",
-    # )
 
 class PurchaseModel(models.Model):
     gem = models.ForeignKey(

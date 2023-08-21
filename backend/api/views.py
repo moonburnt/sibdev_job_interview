@@ -26,7 +26,13 @@ class DealsViewSet(CreateListViewSet):
         else:
             return super().get_serializer_class()
 
+    def get_queryset(self):
+        if self.action == "list":
+            return models.ClientModel.objects.order_by("-spent_money")[:5]
+        else:
+            return super().get_queryset()
+
     def create(self, request, *args, **kwargs):
         super().create(request, *args, **kwargs)
 
-        return Response(status=status.HTTP_201_CREATED)
+        return Response(status=status.HTTP_200_OK)
